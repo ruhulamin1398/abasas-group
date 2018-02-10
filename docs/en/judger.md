@@ -189,6 +189,33 @@ This example let us try the wrong answer code.
 }
 ```
 
+#### Example 4
+
+This example is about SE result.
+
+*Request*
+
+```json
+{
+	"lang": "PYTHON35",
+	"source_code": "a = input()\nprint(a)",
+	"time_limit": 3,
+	"memory_limit": 128,
+	"test_cases": []
+}
+```
+
+*Response*
+
+```json
+{
+    "error_message": "agrs are not legal",
+    "result": "SE"
+}
+```
+
+
+
 ##  Notes
 
 * Our judger kernel base on https://github.com/QingdaoU/Judger .
