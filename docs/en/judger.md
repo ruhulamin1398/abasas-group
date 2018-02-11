@@ -11,8 +11,8 @@
 | PYTHON36    | Python(3.6) |
 | PYTHON27    | Python(2.7) |
 | JAVA8       | OpenJDK(8)  |
-| C           | C           |
-| CPP         | C++         |
+| C           | C(5.4)      |
+| CPP         | C++(5.4)    |
 
 ## Install
 
