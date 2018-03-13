@@ -1,0 +1,40 @@
+body{
+  padding: 0;
+}
+#main{
+  width: 101rem;
+  text-align: center;
+  margin: 0 auto;
+}
+#inputText{
+  width: 50rem;
+  float: left;
+}
+.am-form-group{
+}
+.limitTime,.limitMemory{
+  width: 4.8rem;
+}
+#alertDiv{
+  width: 50rem;
+  margin-top: 2rem;
+  margin-left: 51rem;
+  text-align: center;
+  border: 1px solid #dddee1;
+}
+.descripe{
+
+}
+li{
+  list-style-type: none;
+}
+.second{
+  width: 102rem;
+}
+#editor{
+  width: 50rem;
+  height: 30rem;
+}
+.backOutput{
+  width: 101rem;
+}
