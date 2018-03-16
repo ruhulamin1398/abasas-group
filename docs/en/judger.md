@@ -2,9 +2,9 @@
 
 ## About
 
-[eagle-oj-judger](https://github.com/Eagle-OJ/eagle-oj-judger) is an web API for code compilation and execution. It provides restful interface, so you can integrate your own system easily. You can try it in http://www.baidu.com .
+[eagle-oj-judger](https://github.com/Eagle-OJ/eagle-oj-judger) is an web API for code compilation and execution. It provides restful interface, so you can integrate your own system easily. You can try it in on [Online test](http://docs.eagleoj.com/judger/index) .
 
-## Support Language
+## Supported Language
 
 | Language ID | Name        |
 | ----------- | ----------- |
@@ -219,4 +219,4 @@ This example is about SE result.
 ##  Notes
 
 * Our judger kernel base on https://github.com/QingdaoU/Judger .
-* If you have questions, you can open the issue directly.
+* If you have any questions, you can open the issue directly.

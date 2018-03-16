@@ -1,5 +1,5 @@
 function appendText(){
-    var li = "<li><textarea class='txta1'></textarea><textarea class='txta2'></textarea><button class='btn1'>删除</button></li>"
+    var li = "<li><textarea class='txta1'></textarea><textarea class='txta2'></textarea><button class='btn1'>Delete</button></li>"
     $("#addTesting").append(li);        // 追加新元素
 }
 
@@ -22,7 +22,7 @@ $(function(){
   }
   $("#doc-select-1").click(function() {
     var lan = $("#doc-select-1").val();
-    if (lan == "-请选择语言-") {
+    if (lan == "-Select the language-") {
       return;
     }
     editor.getSession().setMode("ace/mode/" + langDict[""+lan]);
@@ -68,7 +68,7 @@ $(function(){
   editor.setTheme("ace/theme/monokai");
   editor.getSession().setMode("ace/mode/java");
     $("body").on("click", ".btn1", function(){
-        console.log($(this).parent().html());
+        // console.log($(this).parent().html());
         $(this).parent().remove();
     });
 });
