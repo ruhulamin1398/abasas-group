@@ -6,8 +6,14 @@
 ### eagle-oj-api
 基于SpringBoot开发的后台，完全的restful交互。
 
+[Github](https://github.com/Eagle-OJ/eagle-oj-api)
+
 ### eagle-oj-web
 基于Vue开发的前端页面。
 
+[Github](https://github.com/Eagle-OJ/eagle-oj-web)
+
 ### eagle-oj-judger
 开源判卷机。
+
+[Github](https://github.com/Eagle-OJ/eagle-oj-judger)

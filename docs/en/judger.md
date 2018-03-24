@@ -1,8 +1,8 @@
-# eagle-oj-judger
+# Eagle-OJ-Judger
 
 ## About
 
-[eagle-oj-judger](https://github.com/Eagle-OJ/eagle-oj-judger) is an web API for code compilation and execution. It provides restful interface, so you can integrate your own system easily. You can try it in on [Online test](http://docs.eagleoj.com/judger/index) .
+[Eagle-OJ-Judger](https://github.com/Eagle-OJ/eagle-oj-judger) is an web API for code compilation and execution. It provides restful interface, so you can integrate your own system easily. You can try it in on [Online test](http://docs.eagleoj.com/judger/index) .
 
 ## Supported Language
 

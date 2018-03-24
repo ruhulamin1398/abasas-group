@@ -1,2 +1,4 @@
 - [首页](/)
-- [Ealge-OJ-judger](/judger)
+- [Eagle-OJ安装指南](/installation)
+- [Ealge-OJ-Judger](/judger)
+

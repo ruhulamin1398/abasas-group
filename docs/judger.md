@@ -1,9 +1,8 @@
-# eagle-oj-判卷机
+# Eagle-OJ-Judger
 
 ## 关于
 
-[eagle-oj-judger](https://github.com/Eagle-OJ/eagle-oj-judger)
-是用于代码编译和执行的Web API。它提供了RESTful接口，所以你可以轻松地集成你自己的系统。你可以尝试一下[在线测试](http://docs.eagleoj.com/judger/index) .
+[Eagle-OJ-Judger](https://github.com/Eagle-OJ/eagle-oj-judger)是用于代码编译和执行的Web API。它提供了RESTful接口，所以你可以轻松地集成你自己的系统。你可以尝试一下[在线测试](http://docs.eagleoj.com/judger/index) .
 
 ## 支持的语言
 
