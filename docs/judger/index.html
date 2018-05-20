@@ -2,47 +2,340 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ealge-OJ judger test page</title>
-</head>
-<link rel="stylesheet" href="main.css" type="text/css">
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css">
-<script src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
-<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/ace/1.3.1/ace.js" charset="utf-8"></script>
-<body>
-  <div id="main">
-    <div id="inputText">
-      <div class="am-form-group">
-        <select id="doc-select-1" name="AreaId" size="1" class="sel">
-          <option>-Select the language-</option>
-          <option value="PYTHON27">python2.7</option>
-          <option value="PYTHON35">python3.5</option>
-          <option value="JAVA8">java8</option>
-          <option value="C">C</option>
-          <option value="CPP">C++</option>
-        </select>
-        Enter the judger IP<input class="httpID" type="url" value="http://101.132.164.120:5000/judge" style="width:300px"/>
-      </div>
-      <div  id="editor"></div>
-      <script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-      </script>
-      Limit time(S)：<input class="limitTime" type="text" value="3"/>&nbsp&nbspLimit memory(MB)：<input class="limitMemory" value="128"/>
-      <button id="submitBtn" type="button" class="am-btn am-btn-secondary">Submit</button>
-    </div><br/>
-    <div id="alertDiv">
-      <h3>Test cases</h3>
-      <hr/>
-      <p class="descripe" id="descripe">Please enter at least one test cases. The input string can not to be filled.</p>
-      <div id="addTesting">
-      </div>
-      <button class="am-btn am-btn-secondary" id="addOne" onclick="appendText()">Add one test cases</button>
-      <hr/>
-      <button class="am-btn am-btn-default" onclick="delTextarea()">Cancel</button>
-    </div><br/><br/><br/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Eagle Oj Judger test page</title>
+    <style>
+
+        .addCase::-webkit-scrollbar{
+            display:none;
+        }
+
+        #editor {
+            width: 570px;
+            height: 400px;
+            position: absolute;
+            left: -175px;
+            border: 1px solid lightgray;
+            max-lines: 30;
+            autoScrollEditorIntoView: true
+
+        }
+        .editor{
+            height: 100px;
+            width: 200px;
+            margin-right: 20px;
+            margin-top: 40px;
+            margin-left: 20px;
+            float: left;
+            border: 1px solid lightgray;
+            max-lines: 30;
+            autoScrollEditorIntoView: true
+
+        }
+
+        .header{
+            width: 100%;
+            height: 60px;
+            text-align: center;
+            font-weight: bold;
+        }
+        h1{
+            line-height: 50px;
+            font-size: 50px;
+        }
+
+        .content{
+            position: absolute;
+            top: 70px;
+            left: 660px;
+        }
+        .content-bottom{
+            position: absolute;
+            top: 650px;
+            left: 432px;
+        }
+        .bottom{
+            position: absolute;
+            top: 680px;
+            left: 400px;
+            text-align: center;
+        }
+        .btn-primary{
+            height: 30px;
+            margin-top: -6px;
+            line-height: 10px;
+        }
+        .layer-close{
+            cursor: pointer;
+            position: absolute;
+            left: 570px;
+            top: -8px;
+        }
+
+        .shadow{
+            width: 100%;
+            height: 1000px;
+            opacity: 0.5;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #000;
+            z-index: 9999;
+            display: none;
+
+        }
+        .addCase{
+            width: 600px;
+            height: 500px;
+            overflow: auto;
+            position: fixed;
+            top: 100px;
+            margin-left: 500px;
+            text-align: center;
+            border: 10px solid #ffffff;
+            z-index: 10000;
+            background: #F9F9F9;
+
+            }
+        .runText{
+            display: none;
+
+        }
+        .delete{
+            float: left;
+            position: relative;
+            top: 80px;
+        }
+        .addText{
+            float: left;
+        }
+        .addone{
+            position: absolute;
+            left: 245px;
+            top: 80px;
+            margin-top: 12px;
+        }
+        .addText li{
+            list-style: none;
+        }
+        .color{
+            background-color: #93999f;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="header">
+    <span>Eagle-OJ-Judger</span>
+</div>
+
+<div class="content">
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Language select</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+            <option>---select---</option>
+            <option value="PYTHON27">Python2.7</option>
+            <option value="PYTHON35">Python3.5</option>
+            <option value="JAVA8">Java8</option>
+            <option value="C">C</option>
+            <option value="CPP">C++</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Enter the judger IP</label>
+        <input type="url" class="form-control httpID" id="exampleFormControlInput1" value="http://101.132.164.120:5000/judge">
+
+    </div>
+
+    <div id="editor"></div>
+
+</div>
+
+<div class="shadow" id="shadow">
+
+</div>
+
+<div class="runText" id="runText">
+
+
+    <div class="addCase" id="addCase">
+        <h5>Test Cases</h5>
+        </br>
+        <p>Please enter at least one test cases. The input string can not to be filled.</p>
+
+        <div class="addText" id="addText"></div>
+        <button type="button" class="btn btn-primary addone" id="addone">Add one</button>
+        <div class="layer-close" id="layer-close">x</div>
+    </div>
+</div>
+
+
+
+<div class="content-bottom">
+    Limit time(S)：<input class="limitTime" type="text" value="3"/>&nbsp&nbspLimit memory(MB)：<input class="limitMemory" value="128"/>
+    <button type="button" class="btn btn-primary runText1" id="pop-up">Add test cases</button>
+    <button type="button" class="btn btn-primary" id="submit">Submit</button>
+</div>
+
+<div class="bottom">
+    <h6>Result</h6>
     <textarea class="backOutput" rows="10" cols="122"></textarea><br/>
-  </div>
-  <script type="text/javascript" src="main.js"></script>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/chrome");
+    editor.session.setMode("ace/mode/java");
+    document.getElementById('editor').style.fontSize='20px';
+    editor.setShowPrintMargin(true);
+    editor.session.getLength();
+    editor.session.setUseWrapMode(true);
+    // editor.selection.getCursor();
+    var arr = [];
+    var count = 0;
+    var langDict = {
+        "PYTHON27":"python",
+        "PYTHON35":"python",
+        "JAVA8":"java",
+        "C":"c_cpp",
+        "CPP":"c_cpp"
+    }
+
+    $(function () {
+        $('#pop-up').click(function () {
+            $('#runText').show();
+            $('.shadow').show();
+            $('body').css('overflow','hidden');
+
+            $('#layer-close').click(function () {
+                $('.shadow').hide();
+                $('#runText').hide();
+                $('body').css('overflow','auto');
+
+            })
+
+            $('#shadow').click(function () {
+                $('#runText').hide();
+                $('#shadow').hide();
+                $('body').css('overflow','auto');
+            })
+
+        })
+
+        $("#exampleFormControlSelect1").click(function () {
+            var lan = $("#exampleFormControlSelect1").val();
+            console.log(lan);
+
+            if (lan == "---select---") {
+                return;
+            }
+            editor.session.setMode("ace/mode/"+ langDict[""+lan]);
+        })
+
+        })
+
+        $(function () {
+            $('#addone').click(function () {
+                getAce();
+            })
+        })
+
+        function getAce() {
+        var editorx = null;
+        // var arr = [];
+
+            $("#addText").append("<li><div></div> <div></div> <button type=\"button\" class=\"btn btn-primary delete\">Delete</button></li>");
+            $('#addText>li>div').each(function (index) {
+
+                index = index + 1
+                $(this).attr({
+                    class: 'editor ace_editor ace_tm',
+                    id: 'editor' + index,
+                });
+                var str = 'editor' + index;
+                 editorx = ace.edit(str);
+                editorx.setTheme("ace/theme/chrome");
+                editorx.setShowPrintMargin(true);
+                editorx.session.getLength();
+                editorx.session.setUseWrapMode(true);
+                 arr.push(editorx);
+
+            })
+            $('.delete').click(function () {
+                $(this).parent().remove();
+            })
+        }
+        $(function () {
+            $("#submit").click(function () {
+                var lan = $("#exampleFormControlSelect1").val();
+                var codeContent = editor.getValue();
+                var limitTime = $(".limitTime").val();
+                var limitMemory = $(".limitMemory").val();
+                var addText = $("#addText>li>div");
+                var len = addText.length;
+
+                var inputCode = null, outputCode = null;
+                var testArr = [];
+                var stock = [];
+                for(var i=0;i<arr.length;i++)
+                {
+                    testArr.push(arr[i].getValue());
+                    count = count+1;
+                    if(count == 2)
+                    {
+                        var obj = {stdin:testArr[i-1],stdout:testArr[i]}
+                        stock.push(obj);
+                        count=0;
+                        console.log(stock);
+                    }
+
+                }
+                var httpID = $(".httpID").val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: httpID,
+                    data: JSON.stringify({
+                        lang:lan,
+                        source_code:codeContent,
+                        time_limit: parseInt(limitTime),
+                        memory_limit: parseInt(limitMemory),
+                        test_cases:stock
+
+                    }),
+                    //contentType: "application/json",
+                    contentType:"application/json;charset=UTF-8",
+                    processData:false,
+
+                    beforeSend:function(XMLHttpRequest)
+                    {
+                        // $('#submit').addClass("color");
+                        $('#submit').html("...请等待");
+                        $('#submit').attr('disabled','disabled');
+                    },
+                    success: function (data,status) {
+                        data = JSON.stringify(data,null,'\t');
+                        $(".backOutput").text(data);
+                        // $('#submit').removeClass("color");
+                        $('#submit').html("Submit");
+                        $('#submit').removeAttr('disabled');
+                    },
+                });
+                
+            })
+        })
+
+
+</script>
 </body>
 </html>
