@@ -26,7 +26,7 @@
 
 ### URL
 
-你应该将 `POST` JSON 数据设置为 `IP:5000/judger`，例如，如果你想在本地运行`eagle-oj-judger`, 那你判卷机的URL是 `127.0.0.1:5000/judger`.
+你应该将 `POST` JSON 数据设置为 `IP:5000/judge`，例如，如果你想在本地运行`eagle-oj-judger`, 那你判卷机的URL是 `127.0.0.1:5000/judge`.
 
 ### 请求数据的结构
 

@@ -26,7 +26,7 @@ OK! That's all. Them let us to run code!!
 
 ### URL
 
-You should `POST` JSON data to `IP:5000/judger`, for example, if you run `eagle-oj-judger` locally, your judger URL is `127.0.0.1:5000/judger`.
+You should `POST` JSON data to `IP:5000/judge`, for example, if you run `eagle-oj-judger` locally, your judger URL is `127.0.0.1:5000/judge`.
 
 ### Request data structure
 
